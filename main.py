@@ -1,16 +1,38 @@
-# This is a sample Python script.
+from fastapi import FastAPI
+from contextlib import asynccontextmanager
+import uvicorn
+from shared.init_db import init_db, close_db
+from src.controllers.training_center import (router as training_center_router)
+from config.settings import settings
 
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
+@asynccontextmanager
+async def lifespan(_app: FastAPI):
+    await init_db()
+    yield
+    await close_db()
 
+app = FastAPI(
+    title="User Management API",
+    description="RESTful API for managing bank users",
+    version="1.0.0",
+    lifespan=lifespan
+)
 
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
+app.include_router(training_center_router)
 
+@app.get("/")
+async def root():
+    return {"message": "User Management API", "version": "1.0.0"}
 
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    print_hi('PyCharm')
+@app.get("/health")
+async def health_check():
+    return {"status": "healthy"}
 
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+if __name__ == "__main__":
+    uvicorn.run(
+        "main:app",
+        host="0.0.0.0",
+        port=8080,
+        reload=settings.is_development,
+        log_level="info" if settings.is_production else "debug"
+    )
