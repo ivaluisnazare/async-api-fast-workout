@@ -1,14 +1,15 @@
 from typing import Optional
+from pydantic import BaseModel
 from src.schemas.base import BaseResponseSchema
 
-class CategoryBase(BaseResponseSchema):
+class CategoryBase(BaseModel):
     name: str
 
-class CategoryCreate(BaseResponseSchema):
-    name: str
+class CategoryCreate(CategoryBase):
+    pass
 
-class CategoryUpdate(BaseResponseSchema):
+class CategoryUpdate(BaseModel):
     name: Optional[str] = None
 
-class CategoryResponse(CategoryBase):
-    pass
+class CategoryResponse(BaseResponseSchema):
+    name: str
