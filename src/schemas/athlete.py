@@ -1,7 +1,12 @@
 from typing import Optional
-from src.schemas.base import BaseResponseSchema
+from pydantic import BaseModel, ConfigDict
+import uuid
+from datetime import datetime
 
-class AthleteBase(BaseResponseSchema):
+
+class AthleteBase(BaseModel):
+    model_config = ConfigDict(from_attributes=True)
+
     name: str
     cpf: str
     age: Optional[int] = None
@@ -11,10 +16,14 @@ class AthleteBase(BaseResponseSchema):
     training_center_id: Optional[int] = None
     category_id: Optional[int] = None
 
+
 class AthleteCreate(AthleteBase):
     pass
 
-class AthleteUpdate(BaseResponseSchema):
+
+class AthleteUpdate(BaseModel):
+    model_config = ConfigDict(from_attributes=True)
+
     name: Optional[str] = None
     cpf: Optional[str] = None
     age: Optional[int] = None
@@ -24,5 +33,9 @@ class AthleteUpdate(BaseResponseSchema):
     training_center_id: Optional[int] = None
     category_id: Optional[int] = None
 
+
 class AthleteResponse(AthleteBase):
-    pass
+    pk_id: int
+    id: uuid.UUID
+    created_at: Optional[datetime] = None
+    updated_at: Optional[datetime] = None

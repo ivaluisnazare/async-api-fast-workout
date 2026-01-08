@@ -4,6 +4,7 @@ import uvicorn
 from shared.init_db import init_db, close_db
 from src.controllers.training_center import (router as training_center_router)
 from src.controllers.category import (router as category_router)
+from src.controllers.athlete import (router as athlete_router)
 from config.settings import settings
 
 @asynccontextmanager
@@ -21,6 +22,7 @@ app = FastAPI(
 
 app.include_router(training_center_router)
 app.include_router(category_router)
+app.include_router(athlete_router)
 
 @app.get("/")
 async def root():
