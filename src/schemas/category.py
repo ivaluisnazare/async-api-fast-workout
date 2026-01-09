@@ -1,3 +1,4 @@
+#schemas for Category entity
 from typing import Optional
 from pydantic import BaseModel
 from src.schemas.base import BaseResponseSchema
