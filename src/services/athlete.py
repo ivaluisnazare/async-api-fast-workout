@@ -40,7 +40,7 @@ class AthleteService:
             raise NotFoundException(f"Athlete with id {pk_id} not found")
 
         # If CPF is being updated, check for conflicts
-        if athlete.cpf and athlete.cpf != existing.cpf:
+        if athlete.cpf and athlete.cpf != existing["cpf"]:
             cpf_exists = await self.repository.get_by_cpf(athlete.cpf)
             if cpf_exists:
                 raise AlreadyExistsException(f"Athlete with CPF '{athlete.cpf}' already exists")
