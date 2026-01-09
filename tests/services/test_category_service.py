@@ -23,7 +23,7 @@ class TestCategoryService:
         """Sample category data for testing"""
         return {
             "id": 1,
-            "uuid": "123e4567-e89b-12d3-a456-426614174000",
+            "uuid": "123e4467-e89b-12d3-a456-426614174000",
             "name": "Test Category"
         }
 
