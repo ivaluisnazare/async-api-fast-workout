@@ -1,5 +1,5 @@
 import pytest
-from unittest.mock import AsyncMock, MagicMock, patch
+from unittest.mock import AsyncMock
 from src.services.category import CategoryService
 from src.schemas.category import CategoryCreate, CategoryUpdate
 from src.exceptions.custom_exceptions import NotFoundException, AlreadyExistsException
@@ -23,7 +23,7 @@ class TestCategoryService:
         """Sample category data for testing"""
         return {
             "id": 1,
-            "uuid": "123e4567-e89b-12d3-a456-426614174000",
+            "uuid": "123e4567-e89b-12d3-a456-426614174010",
             "name": "Test Category"
         }
 
