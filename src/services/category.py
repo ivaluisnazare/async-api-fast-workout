@@ -37,7 +37,7 @@ class CategoryService:
         if not existing:
             raise NotFoundException(f"Category with id {pk_id} not found")
 
-        if category.name and category.name != existing.name:
+        if category.name and category.name != existing["name"]:
             name_exists = await self.repository.get_by_name(category.name)
             if name_exists:
                 raise AlreadyExistsException(f"Category with name '{category.name}' already exists")
