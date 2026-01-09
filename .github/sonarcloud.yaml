@@ -61,8 +61,8 @@ jobs:
       with:
         args: >
           -Dsonar.python.version=3.12.3
-          -Dsonar.projectKey=ivaluisnazare_async-api-fast-dio-luizalabs
-          -Dsonar.projectName=async-api-fast-dio-luizalabs
+          -Dsonar.projectKey=ivaluisnazare_async-api-fast-workout
+          -Dsonar.projectName=async-api-fast-workout
           -Dsonar.organization=ivaluisnazare
           -Dsonar.projectVersion=1.0
           -Dsonar.sources=account,shared
