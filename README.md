@@ -1,1 +1,2 @@
 # async-api-fast-workout
+## A Workout API é uma aplicação RESTful construída com FastAPI async para gerenciamento completo de academias, atletas e categorias. A aplicação segue uma arquitetura monolítica bem estruturada e utiliza as melhores práticas de desenvolvimento moderno.
